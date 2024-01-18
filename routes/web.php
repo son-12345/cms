@@ -13,15 +13,16 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', 'HomeController@showWelcome');
+Route::get('home', 'App\Http\Controllers\HomeController@showWelcome');
+Route::get('about','App\Http\Controllers\AboutController@showDetails');
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-Route::get('about',function() {
-    return 'Hello World';
+Route::get('/', function () {
+    return view('welcome');
 });
+
+//Route::get('about',function() {
+//    return 'About Content';
+//});
 
 Route::get('about/directions',function() {
     return'Directions go here';
@@ -31,9 +32,7 @@ Route::any('submit-form',function() {
     return 'Process Form';
 });
 
-Route::get('about/{theSubject}',function ($theSubject) {
-    return $theSubject. ' content goes here';
-});
+Route::get('about/{theSubject}', 'App\Http\Controllers\AboutController@showSubject');
 
 Route::get('about/classes/{theSubject}', function ($theSubject) {
     return " Content on $theSubject ";
@@ -47,5 +46,3 @@ Route::get('where', function() {
     return Redirect::route('direction');
 });
 
-Route::get('/showWelcome', [HomeController::class, 'showWelcome']);
-Route::get('/user/{id}', [TestController::class, 'show']);
