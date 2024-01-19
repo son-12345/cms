@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Faker\Provider\Base;
+//use Faker\Provider\Base;
 use Illuminate\Routing\Controller as BaseController;
 class AboutController extends BaseController
 {

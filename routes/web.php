@@ -20,6 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('profile/{name}','App\Http\Controllers\ProfileController@showProfile');
+
 //Route::get('about',function() {
 //    return 'About Content';
 //});
