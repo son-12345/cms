@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -48,3 +48,25 @@ Route::get('where', function() {
     return Redirect::route('direction');
 });
 
+Route::get('/insert', function (){
+    DB::insert('insert into posts(title, body, is_admin) values(?,?,?)', ['PHP with Laravel', 'Laravel is the best framework !',4] );
+    return 'DONE';
+});
+
+Route::get('/read', function () {
+    $result = DB::select('select * from posts where id = ?', [1]);
+//    return  $result;
+    foreach ($result as $post){
+        return $post->body;
+    }
+});
+
+Route::get('update', function (){
+    $update = DB::update('update posts set title = "New Title haha" where id > ?', [1]);
+    return $update;
+});
+
+Route::get('delete', function () {
+    $deleted = DB::delete('delete from posts where id = ?',[3]);
+    return $deleted;
+});
